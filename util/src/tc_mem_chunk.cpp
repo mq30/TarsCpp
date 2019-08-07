@@ -277,9 +277,10 @@ TC_MemMultiChunkAllocator::~TC_MemMultiChunkAllocator()
 
 void TC_MemMultiChunkAllocator::clear()
 {
-    for(size_t i = 0; i < _allocator.size(); i++)
+    for(size_t i = 0; i < _allocator.size() && _allocator[i]; i++)
     {
         delete _allocator[i];
+		_allocator[i] = NULL;
     }
     _allocator.clear();
 
